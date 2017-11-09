@@ -1,0 +1,126 @@
+﻿@model IEnumerable<GIS_SCM.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+
+
+
+  <!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Manage Customer</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Manage Customer</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customer Spatial Master Data</h3>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src='~/Content/img/icons/json.png' width="24" /> JSON</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='~/Content/img/icons/json.png' width="24" /> JSON (ignoreColumn)</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'json',escape:'true'});"><img src='~/Content/img/icons/json.png' width="24" /> JSON (with Escape)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src='~/Content/img/icons/xml.png' width="24" /> XML</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'sql'});"><img src='~/Content/img/icons/sql.png' width="24" /> SQL</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src='~/Content/img/icons/csv.png' width="24" /> CSV</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src='~/Content/img/icons/txt.png' width="24" /> TXT</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src='~/Content/img/icons/xls.png' width="24" /> XLS</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src='~/Content/img/icons/word.png' width="24" /> Word</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src='~/Content/img/icons/ppt.png' width="24" /> PowerPoint</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src='~/Content/img/icons/png.png' width="24" /> PNG</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src='~/Content/img/icons/pdf.png' width="24" /> PDF</a></li>
+                        </ul>
+                    </div>           
+                </div>
+                <div class="panel-body">
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                    <table id="customers2" class="table datatable table-striped table-actions">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Customer No
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                               
+                                <th>
+                                    State
+                                </th>
+                                <th>
+                                    Address
+                                </th>
+                                <th>
+                                    Latitude
+                                </th>
+                                <th>
+                                    Longitude
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerName)
+                                    </td>
+                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerState)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerAddress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Latitude)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Longitude)
+                                    </td>
+                                    <td>
+                                        <a title="Modify Customer" href="@Url.Action("Edit", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
+                                        <a title="View Customer" href="@Url.Action("Details", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
+                                        <a title="View Customer" href="@Url.Action("Delete", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
+                                        
+                                    </td>
+                                </tr>
+                            }
+
+</table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+            </div>
+<!-- END PAGE CONTENT -->
+        </div>
+<!-- END PAGE CONTAINER -->
