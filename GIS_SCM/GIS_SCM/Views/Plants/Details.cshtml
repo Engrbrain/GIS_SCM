@@ -1,0 +1,58 @@
+﻿@model GIS_SCM.Models.Plant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Plant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlantCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlantAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlantAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

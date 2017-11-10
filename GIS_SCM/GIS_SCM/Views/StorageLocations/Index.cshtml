@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GIS_SCM.Models.StorageLocation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServicingPlantCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StorageLocationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StorageLocationDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StorageLocationAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServicingPlantCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StorageLocationNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StorageLocationDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StorageLocationAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

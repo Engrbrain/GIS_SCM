@@ -1,0 +1,66 @@
+﻿@model GIS_SCM.Models.DistributionCenter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DistributionCenter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicingPlantCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicingPlantCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DCNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DCDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DCAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

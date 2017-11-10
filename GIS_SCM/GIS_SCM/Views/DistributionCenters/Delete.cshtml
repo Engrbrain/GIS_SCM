@@ -1,0 +1,72 @@
+﻿@model GIS_SCM.Models.DistributionCenter
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DistributionCenter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicingPlantCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicingPlantCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DCNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DCDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DCAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DCAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

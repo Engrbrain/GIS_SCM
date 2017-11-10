@@ -15,11 +15,11 @@ using System.Xml.Linq;
 
 namespace GIS_SCM.Controllers
 {
-    public class Customer_UploadController : Controller
+    public class Plant_UploadController : Controller
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["GIS_SCMContext"].ConnectionString);
         OleDbConnection Econ;
-        // GET: Customer_Upload
+        // GET: Plant_Upload
         public ActionResult Index()
         {
             TempData["Notification"] = "";
@@ -36,38 +36,36 @@ namespace GIS_SCM.Controllers
 
             using (var db = new GIS_SCMContext())
             {
-                foreach (var customer in db.Customers)
+                foreach (var plant in db.Plants)
                 {
                     // Geocode Address
                     // Leverage Geocoding API using address
-                    if (customer.Latitude == "NA" || customer.Longitude == "NA")
-                     { 
-                    string physical_address = customer.CustomerAddress + customer.CustomerState + customer.Nationality;
-                    string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?address={0}&key=AIzaSyCiTj6_U1FvAawzGsTg9ug9ZzJ7nP14H_E", Uri.EscapeDataString(physical_address));
-                    WebRequest request = WebRequest.Create(requestUri);
-                    WebResponse response = request.GetResponse();
-                    XDocument xdoc = XDocument.Load(response.GetResponseStream());
-                    XElement result = xdoc.Element("GeocodeResponse").Element("result");
-                    XElement locationElement = result.Element("geometry").Element("location");
-                    XElement lat = locationElement.Element("lat");
-                    XElement lng = locationElement.Element("lng");
+                    if (plant.Latitude == "NA" || plant.Longitude == "NA")
+                    {
+                        string physical_address = plant.PlantAddress;
+                        string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?address={0}&key=AIzaSyCiTj6_U1FvAawzGsTg9ug9ZzJ7nP14H_E", Uri.EscapeDataString(physical_address));
+                        WebRequest request = WebRequest.Create(requestUri);
+                        WebResponse response = request.GetResponse();
+                        XDocument xdoc = XDocument.Load(response.GetResponseStream());
+                        XElement result = xdoc.Element("GeocodeResponse").Element("result");
+                        XElement locationElement = result.Element("geometry").Element("location");
+                        XElement lat = locationElement.Element("lat");
+                        XElement lng = locationElement.Element("lng");
 
-                    string latitude = lat.ToString();
-                    string longitude = lng.ToString();
+                        string latitude = lat.ToString();
+                        string longitude = lng.ToString();
 
-                    string strlong = longitude.Replace("<lng>", "").Replace("</lng>", "");
-                    string strlat = latitude.Replace("<lat>", "").Replace("</lat>", "");
+                        string strlong = longitude.Replace("<lng>", "").Replace("</lng>", "");
+                        string strlat = latitude.Replace("<lat>", "").Replace("</lat>", "");
 
-
-
-                    customer.Latitude = strlat;
-                    customer.Longitude = strlong;
-                    db.Entry(customer).State = System.Data.Entity.EntityState.Modified;
+                        plant.Latitude = strlat;
+                        plant.Longitude = strlong;
+                        db.Entry(plant).State = System.Data.Entity.EntityState.Modified;
                     }
                 }
 
                 db.SaveChanges();
-                TempData["Notification"] = "Customer Master Data Uploaded Successfully";
+                TempData["Notification"] = "Supplier Master Data Uploaded Successfully";
 
             }
 
@@ -96,12 +94,10 @@ namespace GIS_SCM.Controllers
 
             DataTable dt = ds.Tables[0];
             SqlBulkCopy objbulk = new SqlBulkCopy(con);
-            objbulk.DestinationTableName = "Customer";
-            objbulk.ColumnMappings.Add("CustomerNumber", "CustomerNumber");
-            objbulk.ColumnMappings.Add("CustomerName", "CustomerName");
-            objbulk.ColumnMappings.Add("Nationality", "Nationality");
-            objbulk.ColumnMappings.Add("CustomerState", "CustomerState");
-            objbulk.ColumnMappings.Add("CustomerAddress", "CustomerAddress");
+            objbulk.DestinationTableName = "Plant";
+            objbulk.ColumnMappings.Add("PlantCode", "PlantCode");
+            objbulk.ColumnMappings.Add("PlantName", "PlantName");
+            objbulk.ColumnMappings.Add("PlantAddress", "PlantAddress");
             objbulk.ColumnMappings.Add("Latitude", "Latitude");
             objbulk.ColumnMappings.Add("Longitude", "Longitude");
             con.Open();
@@ -112,6 +108,5 @@ namespace GIS_SCM.Controllers
 
 
         }
-
     }
 }

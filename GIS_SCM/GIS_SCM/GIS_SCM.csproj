@@ -152,7 +152,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\Customer_UploadController.cs" />
+    <Compile Include="Controllers\DC_UploadController.cs" />
+    <Compile Include="Controllers\DistributionCentersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
+    <Compile Include="Controllers\Material_UploadController.cs" />
+    <Compile Include="Controllers\PlantsController.cs" />
+    <Compile Include="Controllers\Plant_UploadController.cs" />
+    <Compile Include="Controllers\StorageLocationsController.cs" />
+    <Compile Include="Controllers\StorageLocation_UploadController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\Supplier_UploadController.cs" />
     <Compile Include="DAL\GIS_SCMContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1179,6 +1189,36 @@
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customer_Upload\Index.cshtml" />
+    <Content Include="Views\Suppliers\Create.cshtml" />
+    <Content Include="Views\Suppliers\Delete.cshtml" />
+    <Content Include="Views\Suppliers\Details.cshtml" />
+    <Content Include="Views\Suppliers\Edit.cshtml" />
+    <Content Include="Views\Suppliers\Index.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\Plants\Create.cshtml" />
+    <Content Include="Views\Plants\Delete.cshtml" />
+    <Content Include="Views\Plants\Details.cshtml" />
+    <Content Include="Views\Plants\Edit.cshtml" />
+    <Content Include="Views\Plants\Index.cshtml" />
+    <Content Include="Views\StorageLocations\Create.cshtml" />
+    <Content Include="Views\StorageLocations\Delete.cshtml" />
+    <Content Include="Views\StorageLocations\Details.cshtml" />
+    <Content Include="Views\StorageLocations\Edit.cshtml" />
+    <Content Include="Views\StorageLocations\Index.cshtml" />
+    <Content Include="Views\DistributionCenters\Create.cshtml" />
+    <Content Include="Views\DistributionCenters\Delete.cshtml" />
+    <Content Include="Views\DistributionCenters\Details.cshtml" />
+    <Content Include="Views\DistributionCenters\Edit.cshtml" />
+    <Content Include="Views\DistributionCenters\Index.cshtml" />
+    <Content Include="Views\Supplier_Upload\Index.cshtml" />
+    <Content Include="Views\DC_Upload\Index.cshtml" />
+    <Content Include="Views\Material_Upload\Index.cshtml" />
+    <Content Include="Views\Plant_Upload\Index.cshtml" />
+    <Content Include="Views\StorageLocation_Upload\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1195,6 +1235,7 @@
     <Folder Include="Content\assets\uploads\" />
     <Folder Include="Content\js\plugins\fileinput\fileinput\" />
     <Folder Include="excelfolder\" />
+    <Folder Include="Views\Supplier\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

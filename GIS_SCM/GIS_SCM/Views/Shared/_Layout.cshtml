@@ -10,6 +10,10 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <!-- END META SECTION -->
     <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/cropper/cropper.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/jstree/jstree.min.css" />
+    <!--  EOF CSS INCLUDE -->
+    <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="~/Content/css/theme-default.css" />
     <!-- EOF CSS INCLUDE -->                   
 
@@ -95,8 +99,8 @@
                 <li class="xn-openable">
                     <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Supplier Master</span></a>
                     <ul>
-                        <li><a href="ui-widgets.html"><span class="fa fa-heart"></span> Upload Supplier</a></li>
-                        <li><a href="ui-elements.html"><span class="fa fa-cogs"></span>Manage Supplier</a></li>
+                        <li><a href="@Url.Action("index","Supplier_Upload")"><span class="fa fa-heart"></span> Upload Supplier</a></li>
+                        <li><a href="@Url.Action("index","Suppliers")"><span class="fa fa-cogs"></span>Manage Supplier</a></li>
 
                     </ul>
                 </li>
@@ -104,8 +108,8 @@
                 <li class="xn-openable">
                     <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Material Master</span></a>
                     <ul>
-                        <li><a href="ui-widgets.html"><span class="fa fa-heart"></span> Upload Material</a></li>
-                        <li><a href="ui-elements.html"><span class="fa fa-cogs"></span>Manage Material</a></li>
+                        <li><a href="@Url.Action("index","Material_Upload")"><span class="fa fa-heart"></span> Upload Material</a></li>
+                        <li><a href="@Url.Action("index","Materials")"><span class="fa fa-cogs"></span>Manage Material</a></li>
 
                     </ul>
                 </li>
@@ -113,8 +117,17 @@
                 <li class="xn-openable">
                     <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Plant Master</span></a>
                     <ul>
-                        <li><a href="ui-widgets.html"><span class="fa fa-heart"></span> Upload Plant</a></li>
-                        <li><a href="ui-elements.html"><span class="fa fa-cogs"></span>Manage Plant</a></li>
+                        <li><a href="@Url.Action("index","Plant_Upload")"><span class="fa fa-heart"></span> Upload Plant</a></li>
+                        <li><a href="@Url.Action("index","Plants")"><span class="fa fa-cogs"></span>Manage Plant</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="xn-openable">
+                    <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Distribution Centers Master</span></a>
+                    <ul>
+                        <li><a href="@Url.Action("index","DC_Upload")"><span class="fa fa-heart"></span> Upload DC</a></li>
+                        <li><a href="@Url.Action("index","DistributionCenters")"><span class="fa fa-cogs"></span>Manage DC</a></li>
 
                     </ul>
                 </li>
@@ -311,6 +324,13 @@
             <script type='text/javascript' src='~/Content/js/plugins/bootstrap/bootstrap-datepicker.js'></script>
             <script type="text/javascript" src="~/Content/js/plugins/owl/owl.carousel.min.js"></script>
 
+            <script type="text/javascript" src="js/plugins/fileinput/fileinput.min.js"></script>
+
+            <script type="text/javascript" src="js/plugins/cropper/cropper.min.js"></script>
+
+            <script type="text/javascript" src="js/plugins/jstree/jstree.min.js"></script>
+            <!-- END PAGE PLUGINS -->
+
             <script type="text/javascript" src="~/Content/js/plugins/moment.min.js"></script>
             <script type="text/javascript" src="~/Content/js/plugins/daterangepicker/daterangepicker.js"></script>
             <!-- END THIS PAGE PLUGINS-->
@@ -321,6 +341,7 @@
             <script type="text/javascript" src="~/Content/js/actions.js"></script>
 
             <script type="text/javascript" src="~/Content/js/demo_dashboard.js"></script>
+            <script type="text/javascript" src="js/demo_file_handling.js"></script>
             <!-- END TEMPLATE -->
             <!-- END SCRIPTS -->         
 
