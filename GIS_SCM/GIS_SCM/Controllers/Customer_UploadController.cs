@@ -41,26 +41,35 @@ namespace GIS_SCM.Controllers
                     // Geocode Address
                     // Leverage Geocoding API using address
                     if (customer.Latitude == "NA" || customer.Longitude == "NA")
-                     { 
-                    string physical_address = customer.CustomerAddress + customer.CustomerState + customer.Nationality;
+                     {
+                        string strlong;
+                        string strlat;
+
+                    string physical_address = customer.CustomerAddress + " " + customer.CustomerState + " " + customer.Nationality;
                     string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?address={0}&key=AIzaSyCiTj6_U1FvAawzGsTg9ug9ZzJ7nP14H_E", Uri.EscapeDataString(physical_address));
                     WebRequest request = WebRequest.Create(requestUri);
                     WebResponse response = request.GetResponse();
                     XDocument xdoc = XDocument.Load(response.GetResponseStream());
                     XElement result = xdoc.Element("GeocodeResponse").Element("result");
-                    XElement locationElement = result.Element("geometry").Element("location");
-                    XElement lat = locationElement.Element("lat");
-                    XElement lng = locationElement.Element("lng");
+                        if (result != null)
+                        {
+                            XElement locationElement = result.Element("geometry").Element("location");
+                            XElement lat = locationElement.Element("lat");
+                            XElement lng = locationElement.Element("lng");
 
-                    string latitude = lat.ToString();
-                    string longitude = lng.ToString();
+                            string latitude = lat.ToString();
+                            string longitude = lng.ToString();
 
-                    string strlong = longitude.Replace("<lng>", "").Replace("</lng>", "");
-                    string strlat = latitude.Replace("<lat>", "").Replace("</lat>", "");
+                            strlong = longitude.Replace("<lng>", "").Replace("</lng>", "");
+                            strlat = latitude.Replace("<lat>", "").Replace("</lat>", "");
 
+                        }
+                        else { 
+                            strlong = "3.3333";
+                            strlat = "6.5833";
+                        }
 
-
-                    customer.Latitude = strlat;
+                        customer.Latitude = strlat;
                     customer.Longitude = strlong;
                     db.Entry(customer).State = System.Data.Entity.EntityState.Modified;
                     }

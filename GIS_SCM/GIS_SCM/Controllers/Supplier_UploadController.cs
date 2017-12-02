@@ -43,7 +43,7 @@ namespace GIS_SCM.Controllers
                     // Leverage Geocoding API using address
                     if (supplier.Latitude == "NA" || supplier.Longitude == "NA")
                     {
-                        string physical_address = supplier.SupplierAddress + supplier.SupplierState + supplier.Nationality;
+                        string physical_address = supplier.SupplierAddress + " " + supplier.SupplierState + " " + supplier.Nationality;
                         string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?address={0}&key=AIzaSyCiTj6_U1FvAawzGsTg9ug9ZzJ7nP14H_E", Uri.EscapeDataString(physical_address));
                         WebRequest request = WebRequest.Create(requestUri);
                         WebResponse response = request.GetResponse();

@@ -22,13 +22,14 @@ namespace GIS_SCM.DAL
         public DbSet<Plant> Plants { get; set; }
         public DbSet<StorageLocation> StorageLocations { get; set; }
         public DbSet<DistributionCenter> DistributionCenters { get; set; }
- 
-
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<GIS_SCM.Models.Truck> Trucks { get; set; }
+
+        public System.Data.Entity.DbSet<GIS_SCM.Models.Transporter> Transporters { get; set; }
     }
 }

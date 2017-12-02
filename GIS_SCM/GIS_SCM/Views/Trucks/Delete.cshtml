@@ -1,0 +1,64 @@
+﻿@model GIS_SCM.Models.Truck
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Truck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastParkedLongitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastParkedLongitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastParkedLatitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastParkedLatitude)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

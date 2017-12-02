@@ -12,5 +12,11 @@ namespace GIS_SCM.Models
         public string MaterialType { get; set; }
         public string MaterialDescription { get; set; }
         public string MaterialReorder { get; set; }
+
+        public ICollection<Deliveries> Deliveries { get; set; }
+        public ICollection<InventoryByDC> InventoryByDC { get; set; }
+        public ICollection<GoodsInTransit> GoodsInTransit { get; set; }
+        public ICollection<InventoryByStorageLocation> InventoryByStorageLocation { get; set; }
+
     }
 }

@@ -150,31 +150,48 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerDemandController.cs" />
+    <Compile Include="Controllers\CustomerMapController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\Customer_UploadController.cs" />
     <Compile Include="Controllers\DC_UploadController.cs" />
+    <Compile Include="Controllers\DistributionCenterMapController.cs" />
     <Compile Include="Controllers\DistributionCentersController.cs" />
+    <Compile Include="Controllers\GITTrackerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\Material_UploadController.cs" />
+    <Compile Include="Controllers\PlantMapController.cs" />
     <Compile Include="Controllers\PlantsController.cs" />
     <Compile Include="Controllers\Plant_UploadController.cs" />
+    <Compile Include="Controllers\StorageLocationMapController.cs" />
     <Compile Include="Controllers\StorageLocationsController.cs" />
     <Compile Include="Controllers\StorageLocation_UploadController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
+    <Compile Include="Controllers\SuppliersMapController.cs" />
     <Compile Include="Controllers\Supplier_UploadController.cs" />
+    <Compile Include="Controllers\TransportersController.cs" />
+    <Compile Include="Controllers\TruckLocationMapController.cs" />
+    <Compile Include="Controllers\TrucksController.cs" />
     <Compile Include="DAL\GIS_SCMContext.cs" />
+    <Compile Include="DAL\GIS_SCMInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerBlob.cs" />
+    <Compile Include="Models\Deliveries.cs" />
     <Compile Include="Models\DistributionCenter.cs" />
+    <Compile Include="Models\GoodsInTransit.cs" />
+    <Compile Include="Models\GoodsMovement.cs" />
+    <Compile Include="Models\InventoryByDC.cs" />
+    <Compile Include="Models\InventoryByStorageLocation.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Plant.cs" />
+    <Compile Include="Models\SalesSummary.cs" />
     <Compile Include="Models\StorageLocation.cs" />
     <Compile Include="Models\Supplier.cs" />
-    <Compile Include="Models\UploadObject.cs" />
+    <Compile Include="Models\Transporter.cs" />
+    <Compile Include="Models\Truck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +318,7 @@
     <Content Include="Content\css\ion\ion.rangeSlider.skinSimple.css" />
     <Content Include="Content\css\jquery\jquery-ui.min.css" />
     <Content Include="Content\css\jstree\jstree.min.css" />
+    <Content Include="Content\css\jvectormap\jquery-jvectormap-2.0.3.css" />
     <Content Include="Content\css\mcustomscrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="Content\css\nvd3\nv.d3.css" />
     <Content Include="Content\css\rickshaw\rickshaw.css" />
@@ -317,6 +335,25 @@
     <Content Include="Content\css\theme-night.css" />
     <Content Include="Content\css\theme-serenity-head-light.css" />
     <Content Include="Content\css\theme-serenity.css" />
+    <Content Include="Content\img\icons\warehouse1.png" />
+    <Content Include="Content\js\plugins\googleapi\images\conv30.png" />
+    <Content Include="Content\js\plugins\googleapi\images\conv40.png" />
+    <Content Include="Content\js\plugins\googleapi\images\conv50.png" />
+    <Content Include="Content\js\plugins\googleapi\images\heart30.png" />
+    <Content Include="Content\js\plugins\googleapi\images\heart40.png" />
+    <Content Include="Content\js\plugins\googleapi\images\heart50.png" />
+    <Content Include="Content\js\plugins\googleapi\images\m1.png" />
+    <Content Include="Content\js\plugins\googleapi\images\m2.png" />
+    <Content Include="Content\js\plugins\googleapi\images\m3.png" />
+    <Content Include="Content\js\plugins\googleapi\images\m4.png" />
+    <Content Include="Content\js\plugins\googleapi\images\m5.png" />
+    <Content Include="Content\js\plugins\googleapi\images\people35.png" />
+    <Content Include="Content\js\plugins\googleapi\images\people45.png" />
+    <Content Include="Content\js\plugins\googleapi\images\people55.png" />
+    <Content Include="Content\js\plugins\googleapi\markerclusterer.js" />
+    <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-ng-mill-en.js" />
+    <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\img\backgrounds\wall_1.jpg" />
@@ -974,11 +1011,9 @@
     <Content Include="Content\js\plugins\jstree\outro.js" />
     <Content Include="Content\js\plugins\jstree\sample.js" />
     <Content Include="Content\js\plugins\jstree\vakata-jstree.js" />
-    <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-europe-mill-en.js" />
     <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-uakraine-merc-en.js" />
     <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-us-aea-en.js" />
-    <Content Include="Content\js\plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
     <Content Include="Content\js\plugins\knob\jquery.knob.min.js" />
     <Content Include="Content\js\plugins\lesscss\less.min.js" />
     <Content Include="Content\js\plugins\maskedinput\jquery.maskedinput.min.js" />
@@ -1158,6 +1193,7 @@
     <Content Include="Content\img\blueimp\play-pause.svg" />
     <Content Include="Content\img\blueimp\video-play.svg" />
     <Content Include="Content\js\plugins\jquery\jquery-2.1.4.min.map" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1169,6 +1205,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\SuppliersMap\images\m1.png" />
+    <Content Include="Views\SuppliersMap\images\m2.png" />
+    <Content Include="Views\SuppliersMap\images\m3.png" />
+    <Content Include="Views\SuppliersMap\images\m4.png" />
+    <Content Include="Views\SuppliersMap\images\m5.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1204,21 +1245,42 @@
     <Content Include="Views\Plants\Details.cshtml" />
     <Content Include="Views\Plants\Edit.cshtml" />
     <Content Include="Views\Plants\Index.cshtml" />
-    <Content Include="Views\StorageLocations\Create.cshtml" />
-    <Content Include="Views\StorageLocations\Delete.cshtml" />
-    <Content Include="Views\StorageLocations\Details.cshtml" />
-    <Content Include="Views\StorageLocations\Edit.cshtml" />
-    <Content Include="Views\StorageLocations\Index.cshtml" />
-    <Content Include="Views\DistributionCenters\Create.cshtml" />
-    <Content Include="Views\DistributionCenters\Delete.cshtml" />
-    <Content Include="Views\DistributionCenters\Details.cshtml" />
-    <Content Include="Views\DistributionCenters\Edit.cshtml" />
-    <Content Include="Views\DistributionCenters\Index.cshtml" />
     <Content Include="Views\Supplier_Upload\Index.cshtml" />
     <Content Include="Views\DC_Upload\Index.cshtml" />
     <Content Include="Views\Material_Upload\Index.cshtml" />
     <Content Include="Views\Plant_Upload\Index.cshtml" />
     <Content Include="Views\StorageLocation_Upload\Index.cshtml" />
+    <Content Include="Views\SuppliersMap\Index.cshtml" />
+    <Content Include="Views\DistributionCenterMap\Index.cshtml" />
+    <Content Include="Views\PlantMap\Index.cshtml" />
+    <Content Include="Views\DistributionCenters\Create.cshtml" />
+    <Content Include="Views\DistributionCenters\Delete.cshtml" />
+    <Content Include="Views\DistributionCenters\Details.cshtml" />
+    <Content Include="Views\DistributionCenters\Edit.cshtml" />
+    <Content Include="Views\DistributionCenters\Index.cshtml" />
+    <Content Include="Views\StorageLocations\Create.cshtml" />
+    <Content Include="Views\StorageLocations\Delete.cshtml" />
+    <Content Include="Views\StorageLocations\Details.cshtml" />
+    <Content Include="Views\StorageLocations\Edit.cshtml" />
+    <Content Include="Views\StorageLocations\Index.cshtml" />
+    <Content Include="Views\Trucks\Create.cshtml" />
+    <Content Include="Views\Trucks\Delete.cshtml" />
+    <Content Include="Views\Trucks\Details.cshtml" />
+    <Content Include="Views\Trucks\Edit.cshtml" />
+    <Content Include="Views\Trucks\Index.cshtml" />
+    <Content Include="Views\Transporters\Create.cshtml" />
+    <Content Include="Views\Transporters\Delete.cshtml" />
+    <Content Include="Views\Transporters\Details.cshtml" />
+    <Content Include="Views\Transporters\Edit.cshtml" />
+    <Content Include="Views\Transporters\Index.cshtml" />
+    <Content Include="Views\Suppliers\supplierPlant.cshtml" />
+    <Content Include="Views\Suppliers\supplierStorageLocation.cshtml" />
+    <Content Include="Views\Customers\customerDC.cshtml" />
+    <Content Include="Views\CustomerMap\Index.cshtml" />
+    <Content Include="Views\StorageLocationMap\Index.cshtml" />
+    <Content Include="Views\CustomerDemand\Index.cshtml" />
+    <Content Include="Views\TruckLocationMap\Index.cshtml" />
+    <Content Include="Views\GITTracker\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1235,7 +1297,6 @@
     <Folder Include="Content\assets\uploads\" />
     <Folder Include="Content\js\plugins\fileinput\fileinput\" />
     <Folder Include="excelfolder\" />
-    <Folder Include="Views\Supplier\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

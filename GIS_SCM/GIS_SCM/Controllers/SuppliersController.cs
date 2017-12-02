@@ -36,6 +36,81 @@ namespace GIS_SCM.Controllers
             return View(supplier);
         }
 
+        public ActionResult supplierPlant(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Supplier supplier = db.Suppliers.Find(id);
+            if (supplier == null)
+            {
+                return HttpNotFound();
+            }
+            string plantmarkers = "[";
+
+
+
+            using (var db = new GIS_SCMContext())
+            {
+               
+                foreach (var plant in db.Plants)
+                {
+
+                    plantmarkers += "{";
+                    plantmarkers += string.Format("'title': '{0} {1} {2}',", plant.PlantCode, " - ", plant.PlantName);
+                    plantmarkers += string.Format("'lat': '{0}',", plant.Latitude);
+                    plantmarkers += string.Format("'lng': '{0}'", plant.Longitude);
+                    plantmarkers += "},";
+
+                }
+
+            }
+
+            plantmarkers += "];";
+            ViewBag.plantmarkers = plantmarkers;
+            return View(supplier);
+        }
+
+
+        public ActionResult supplierStorageLocation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Supplier supplier = db.Suppliers.Find(id);
+            if (supplier == null)
+            {
+                return HttpNotFound();
+            }
+            string slocmarkers = "[";
+
+             
+
+            using (var db = new GIS_SCMContext())
+            {
+                var mystoragelocationlist = db.StorageLocations;
+                var randomstoragelocation = mystoragelocationlist.OrderBy(x => Guid.NewGuid()).Take(8);
+
+                foreach (var storageloc in randomstoragelocation)
+                {
+
+                    slocmarkers += "{";
+                    slocmarkers += string.Format("'title': '{0} {1} {2}',", storageloc.StorageLocationNumber, " - ", storageloc.StorageLocationDesc);
+                    slocmarkers += string.Format("'lat': '{0}',", storageloc.Latitude);
+                    slocmarkers += string.Format("'lng': '{0}'", storageloc.Longitude);
+                    slocmarkers += "},";
+
+                }
+
+            }
+
+            slocmarkers += "];";
+            ViewBag.slocmarkers = slocmarkers;
+            return View(supplier);
+        }
+
         // GET: Suppliers/Create
         public ActionResult Create()
         {
@@ -104,6 +179,8 @@ namespace GIS_SCM.Controllers
             }
             return View(supplier);
         }
+
+
 
         // POST: Suppliers/Delete/5
         [HttpPost, ActionName("Delete")]

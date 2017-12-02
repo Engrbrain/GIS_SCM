@@ -18,7 +18,8 @@ namespace GIS_SCM.Controllers
         // GET: DistributionCenters
         public ActionResult Index()
         {
-            return View(db.DistributionCenters.ToList());
+            var distributionCenters = db.DistributionCenters.Include(d => d.Plant);
+            return View(distributionCenters.ToList());
         }
 
         // GET: DistributionCenters/Details/5
@@ -39,6 +40,7 @@ namespace GIS_SCM.Controllers
         // GET: DistributionCenters/Create
         public ActionResult Create()
         {
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace GIS_SCM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ServicingPlantCode,DCNumber,DCDesc,DCAddress,Latitude,Longitude")] DistributionCenter distributionCenter)
+        public ActionResult Create([Bind(Include = "ID,PlantID,DCNumber,DCDesc,DCAddress,Latitude,Longitude")] DistributionCenter distributionCenter)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace GIS_SCM.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode", distributionCenter.PlantID);
             return View(distributionCenter);
         }
 
@@ -71,6 +74,7 @@ namespace GIS_SCM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode", distributionCenter.PlantID);
             return View(distributionCenter);
         }
 
@@ -79,7 +83,7 @@ namespace GIS_SCM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ServicingPlantCode,DCNumber,DCDesc,DCAddress,Latitude,Longitude")] DistributionCenter distributionCenter)
+        public ActionResult Edit([Bind(Include = "ID,PlantID,DCNumber,DCDesc,DCAddress,Latitude,Longitude")] DistributionCenter distributionCenter)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace GIS_SCM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode", distributionCenter.PlantID);
             return View(distributionCenter);
         }
 

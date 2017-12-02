@@ -16,5 +16,6 @@ namespace GIS_SCM.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
 
+        public ICollection<Deliveries> Deliveries { get; set; }
     }
 }

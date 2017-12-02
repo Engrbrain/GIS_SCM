@@ -4,48 +4,102 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Manage Material</li>
+</ul>
+<!-- END BREADCRUMB -->
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MaterialCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaterialType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaterialDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaterialReorder)
-        </th>
-        <th></th>
-    </tr>
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Manage Material</h2>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaterialCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaterialType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaterialDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaterialReorder)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
 
-</table>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Material Spatial Master Data</h3>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'json',escape:'false'});"><img src='~/Content/img/icons/json.png' width="24" /> JSON</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='~/Content/img/icons/json.png' width="24" /> JSON (ignoreColumn)</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'json',escape:'true'});"><img src='~/Content/img/icons/json.png' width="24" /> JSON (with Escape)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'xml',escape:'false'});"><img src='~/Content/img/icons/xml.png' width="24" /> XML</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'sql'});"><img src='~/Content/img/icons/sql.png' width="24" /> SQL</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'csv',escape:'false'});"><img src='~/Content/img/icons/csv.png' width="24" /> CSV</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'txt',escape:'false'});"><img src='~/Content/img/icons/txt.png' width="24" /> TXT</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'excel',escape:'false'});"><img src='~/Content/img/icons/xls.png' width="24" /> XLS</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'doc',escape:'false'});"><img src='~/Content/img/icons/word.png' width="24" /> Word</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'powerpoint',escape:'false'});"><img src='~/Content/img/icons/ppt.png' width="24" /> PowerPoint</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'png',escape:'false'});"><img src='~/Content/img/icons/png.png' width="24" /> PNG</a></li>
+                            <li><a href="#" onClick="$('#customers2').tableExport({type:'pdf',escape:'false'});"><img src='~/Content/img/icons/pdf.png' width="24" /> PDF</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p>
+
+                        <a href="@Url.Action("Create", "Materials")" class="btn-danger">Create Material</a>
+                    </p>
+                    <div class="table-responsive">
+                        <table id="customers2" class="table datatable">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MaterialCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MaterialType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MaterialDescription)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MaterialReorder)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaterialCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaterialType)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaterialDescription)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaterialReorder)
+                                    </td>
+                                    <td>
+                                        <a title="Modify Material" href="@Url.Action("Edit", "Materials", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
+                                        <a title="View Material" href="@Url.Action("Details", "Materials", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
+                                        <a title="Delete Material" href="@Url.Action("Delete", "Materials", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+            </div>
+<!-- END PAGE CONTENT -->
+        </div>
+<!-- END PAGE CONTAINER -->

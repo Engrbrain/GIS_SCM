@@ -1,0 +1,58 @@
+﻿@model GIS_SCM.Models.Truck
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Truck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastParkedLongitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastParkedLongitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastParkedLatitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastParkedLatitude)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

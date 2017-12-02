@@ -13,5 +13,8 @@ namespace GIS_SCM.Models
         public string PlantAddress { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+
+        public ICollection<StorageLocation> StorageLocation { get; set; }
+        public ICollection<DistributionCenter> DistributionCenter { get; set; }
     }
 }

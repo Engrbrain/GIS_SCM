@@ -18,7 +18,8 @@ namespace GIS_SCM.Controllers
         // GET: StorageLocations
         public ActionResult Index()
         {
-            return View(db.StorageLocations.ToList());
+            var storageLocations = db.StorageLocations.Include(s => s.Plant);
+            return View(storageLocations.ToList());
         }
 
         // GET: StorageLocations/Details/5
@@ -39,6 +40,7 @@ namespace GIS_SCM.Controllers
         // GET: StorageLocations/Create
         public ActionResult Create()
         {
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace GIS_SCM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ServicingPlantCode,StorageLocationNumber,StorageLocationDesc,StorageLocationAddress,Latitude,Longitude")] StorageLocation storageLocation)
+        public ActionResult Create([Bind(Include = "ID,PlantID,StorageLocationNumber,StorageLocationDesc,StorageLocationAddress,Latitude,Longitude")] StorageLocation storageLocation)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace GIS_SCM.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode", storageLocation.PlantID);
             return View(storageLocation);
         }
 
@@ -71,6 +74,7 @@ namespace GIS_SCM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode", storageLocation.PlantID);
             return View(storageLocation);
         }
 
@@ -79,7 +83,7 @@ namespace GIS_SCM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ServicingPlantCode,StorageLocationNumber,StorageLocationDesc,StorageLocationAddress,Latitude,Longitude")] StorageLocation storageLocation)
+        public ActionResult Edit([Bind(Include = "ID,PlantID,StorageLocationNumber,StorageLocationDesc,StorageLocationAddress,Latitude,Longitude")] StorageLocation storageLocation)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace GIS_SCM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PlantID = new SelectList(db.Plants, "ID", "PlantCode", storageLocation.PlantID);
             return View(storageLocation);
         }
 

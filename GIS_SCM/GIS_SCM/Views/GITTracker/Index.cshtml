@@ -1,0 +1,297 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Link</a></li>
+    <li class="active">Active</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> GIT Tracker </h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Track Goods-In-Transit Location</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row" style="margin:10px">
+                            <div class="input-group input-group-sm push-down-10">
+                                <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                                <input id="search" type="text" class="form-control" placeholder="Select Goods Movement" value="" />
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" onclick="showProductDashboard()">
+                                        Select
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="MapRoute" style="width: 100%; height: 600px">
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="panel-body">
+                            <h3 class="push-down-0">Goods In Transit Information</h3>
+                        </div>
+                        <div class="panel-body faq">
+
+                            <div class="faq-item">
+                                <div class="faq-title"><span class="fa fa-angle-down"></span>Material Info</div>
+                                <div class="faq-text">
+                                    <h5>FSA0055</h5>
+                                    <p>DELITE FRUIT JUICE BERRIES 1LTR X 10</p>
+                                    <h5>BUOM</h5>
+                                    <p>Carton</p>
+                                    <h5>Quantity in BUOM</h5>
+                                    <p>5000</p>
+                                     </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-title"><span class="fa fa-angle-down"></span>Goods Movement Information</div>
+                                <div class="faq-text">
+                                    <h5>Movement Type</h5>
+                                    <p>Production Plant to Distribution Center</p>
+                                    <h5>Pickup Point</h5>
+                                    <p> UAC FOODS LIMITED KM 16, Ikorodu Road, Ojota, Lagos.</p>
+                                    <h5>Drop Off Point</h5>
+                                    <p>FG Warehouse ABA </p>
+                                   
+                                    </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-title"><span class="fa fa-angle-down"></span>Haulage Information</div>
+                                <div class="faq-text">
+                                    <h5>Truck Information</h5>
+                                    <p>ABJ120BD - FORD TRUCK</p>
+                                    <h5>Transporter Information</h5>
+                                    <p>TRS1000111 - ABDULMUTALLAB, UMAR FAROUK</p>
+                                    <h5>Average Speed/h5>
+                                    <p>100KM/HOUR</p>
+                                     </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="faq-title"><span class="fa fa-angle-down"></span>GIT Tracking</div>
+                                <div class="faq-text">
+                                    <h5>Source Coordinate</h5>
+                                    <p>UAC FOODS LIMITED KM 16, Ikorodu Road, Ojota, Lagos. (Latitude:6.57545, Longitude:3.36971)</p>
+                                    <h5>Destination Coordinate</h5>
+                                    <p>FG Aba. Abia State (Latitude:5.12159, Longitude:7.37327)</p>
+                                    <h5>Distance in Meters</h5>
+                                    <p id="Distance"> 532KM</p>
+                                    <h5>Estimated Time of Arrival (ETA)</h5>
+                                    <p id="ETA">5 Hours</p>
+                                    <h5>Current Location</h5>
+                                    <p>Not Available</p>
+                                    <h5>Remaining Time of Arrival</h5>
+                                    <p>Not Available</p>
+
+                                
+                                </div>
+                            </div>
+
+                           
+
+                        </div>
+                    </div>
+
+
+                    </div>
+
+
+
+
+                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1KXtscBAuLFXbVZf3YkrTuu84ctOrAzM"></script>
+
+
+                    <script type="text/javascript">
+
+                       
+
+
+
+                        window.onload = function SearchRoute() {
+                            var lat =  6.57545;
+                            var long = 3.36971;
+                            var markers = new Array();
+                            var vmarker = new Array();
+                            var myLatLng;
+
+                            //Find the current location of the user.
+
+                            var myLatLng = new google.maps.LatLng(lat, long);
+                            var m = {};
+                                    m.title = "Suppliers Location";
+                                    m.lat = lat;
+                                    m.lng = long;
+
+                                    markers.push(m);
+
+                                    //Find Destination address location.
+                            
+                                        m = {};
+                                        m.title = "FG Aba Abia State";
+                                        m.lat = 5.12159;
+                                        m.lng = 7.37327;
+                                        markers.push(m);
+                                    
+                                    markers.push(m);
+                                    var mapOptions = {
+                                        center: myLatLng,
+                                        zoom: 4,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    };
+                                    var map = new google.maps.Map(document.getElementById("MapRoute"), mapOptions);
+                                    var infoWindow = new google.maps.InfoWindow();
+                                    var lat_lng = new Array();
+                                    var latlngbounds = new google.maps.LatLngBounds();
+
+                                    for (i = 0; i < markers.length; i++) {
+                                        var data = markers[i];
+                                        var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+
+                                        lat_lng.push(myLatlng);
+
+                                        var marker = new google.maps.Marker({
+                                            position: myLatlng,
+                                            map: map,
+                                            title: data.title
+                                        });
+                                        latlngbounds.extend(marker.position);
+                                        (function (marker, data) {
+                                            google.maps.event.addListener(marker, "click", function (e) {
+                                                infoWindow.setContent(data.title);
+                                                infoWindow.open(map, marker);
+                                            });
+                                        })(marker, data);
+                                    }
+                                    map.setCenter(latlngbounds.getCenter());
+                                    map.fitBounds(latlngbounds);
+
+                                    //***********ROUTING****************//
+
+                                    //Initialize the Path Array.
+                                    var path = new google.maps.MVCArray();
+
+                                    //Getting the Direction Service.
+                                    var service = new google.maps.DirectionsService();
+                                    var servicedist = new google.maps.DistanceMatrixService();
+
+                                    //Set the Path Stroke Color.
+                                    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });
+
+                                    //Loop and Draw Path Route between the Points on MAP.
+                                    for (var i = 0; i < lat_lng.length; i++) {
+                                        if ((i + 1) < lat_lng.length) {
+                                            var src = lat_lng[i];
+                                            var des = lat_lng[i + 1];
+                                            path.push(src);
+                                            poly.setPath(path);
+                                            service.route({
+                                                origin: src,
+                                                destination: des,
+                                                travelMode: google.maps.DirectionsTravelMode.DRIVING
+                                            }, function (result, status) {
+                                                if (status == google.maps.DirectionsStatus.OK) {
+                                                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                                                        path.push(result.routes[0].overview_path[i]);
+                                                    }
+                                                } else {
+                                                    alert("Invalid location.");
+                                                    window.location.href = window.location.href;
+                                                }
+                                            });
+                                        }
+                                    }
+
+                            //Loop and calculate the distance between points and the ETA
+                                    var mysource;
+                                    var mydestination;
+                                    for (var i = 0; i < lat_lng.length; i++) {
+                                        if ((i + 1) < lat_lng.length) {
+                                            var src = lat_lng[i];
+                                            var des = lat_lng[i + 1];
+                                            mysource = JSON.stringify(src);
+                                            mydestination = JSON.stringify(des);
+                                            path.push(src);
+                                            poly.setPath(path);
+                                            servicedist.getDistanceMatrix({
+                                                    origins: [src],
+                                                    destinations: [des],
+                                                travelMode: google.maps.TravelMode.DRIVING,
+                                                unitSystem: google.maps.UnitSystem.METRIC,
+                                                avoidHighways: false,
+                                                avoidTolls: false
+                                            },function (response, status) {
+                                                if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+                                                    var distance = response.rows[0].elements[0].distance.text;
+                                                    var duration = response.rows[0].elements[0].duration.text;
+
+                                                    document.getElementById("Distance").innerHTML = distance;
+                                                    document.getElementById("ETA").innerHTML = duration;
+
+                                                } else {
+                                                    alert("Your Request For Distance Not Available");
+                                                }
+                                            });
+                                        }
+                                    }
+                                    var items = [{
+                                        label: "4500000234 - Monday 14th October 2017",
+                                        value: "4500000234 - Monday 14th October 2017"
+                                    }, {
+                                        label: "4500000235 - Monday 15th October 2017",
+                                        value: "4500000235 - Monday 15th October 2017"
+                                    }, {
+                                        label: "4500000236 - Monday 16th October 2017",
+                                        value: "4500000236 - Monday 16th October 2017"
+                                    }];
+
+                                    $("#search").autocomplete({
+                                        source: items,
+                                    });
+
+
+                        }
+
+                        function showProductDashboard() {
+                            $("#MapRoute").fadeOut();
+                            $("#MapRoute").fadeIn();
+                           
+
+                        }
+                  
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+            </div>
+<!-- END PAGE CONTENT -->
+        </div>
+<!-- END PAGE CONTAINER -->
+
+
+@section JavaScript
+{
+<script type="text/javascript" src="~/Content/js/plugins/highlight/jquery.highlight-4.js"></script>
+<script type="text/javascript" src="~/Content/js/faq.js"></script>
+}

@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">Customer Demand Analysis Map</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Customer Demand Analysis Map</h2>
+</div>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customer Demand Analysis Map</h3>
+                </div>
+                <div class="input-group input-group-sm push-down-10">
+                    <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                    <input id="search" type="text" class="form-control" placeholder="Select Products" value="" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" onclick="showProductDashboard()">
+                            Select
+                        </button>
+                    </div>
+                </div>
+
+                <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange" class="dtrange">
+                            <span></span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul>
+
+                <div class="panel-body">
+                    <div class="row stacked">
+
+                        <div class="col-md-12">
+                            <div id="salesMap" style="width: 100%; height: 650px"></div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+            </div>
+<!-- END PAGE CONTENT -->
+        </div>
+<!-- END PAGE CONTAINER -->
+
+@section JavaScript
+{
+    <script type="text/javascript" src="~/Content/js/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/plugins/jvectormap/jquery-jvectormap-ng-mill-en.js"></script>
+    <script type="text/javascript" src="~/Content/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+    <script type="text/javascript">
+
+         var items = @Html.Raw(ViewBag.items);
+            $("#search").autocomplete({
+                source: items,
+            });
+
+        $(document).ready(function () {
+
+            var cusSalesData = {
+                "2841": 5000,
+                "2881": 15000,
+                "2842": 25000,
+                "2857": 12223,
+                "2858": 23000,
+                "2845": 45000,
+                "2846": 12000,
+                "2839": 45000,
+                "2847": 32000,
+                "2860": 760000,
+                "2863": 5000,
+                "2861": 15000,
+                "2854": 25000,
+                "2862": 12223,
+                "3470": 320000,
+                "2859": 50000,
+                "2843": 12000,
+                "2868": 45000,
+                "2864": 11000,
+                "2869": 760000,
+                "2870": 5000,
+                "2879": 12000,
+                "2865": 25000,
+                "2849": 12223,
+                "2850": 960000,
+                "2867": 50000,
+                "2851": 66000,
+                "2852": 45000,
+                "2853": 32000,
+                "2855": 760000,
+                "2856": 25000,
+                "2866": 12223,
+                "2844": 230000,
+                "2871": 12000,
+                "2848": 12000,
+                "2873": 50000,
+                "2872": 12000
+            };
+
+
+            $('#salesMap').vectorMap({
+                map: 'ng_mill_en',
+                series: {
+                    regions: [{
+                        values: cusSalesData,
+                        scale: ['#C8EEFF', '#0071A4'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                onRegionTipShow: function (event, label, code) {
+                    console.log(label.html() + " : " + code);
+                    label.html('<b>' + label.html() + '</b></br>' + '<b>Total Number of Orders: ' + cusSalesData[code] + '</b>');
+                }
+
+            });
+        });
+
+
+        function showProductDashboard() {
+            $("#salesMap").fadeOut();
+            $("#salesMap").fadeIn();
+
+        };
+    </script>
+
+    
+
+
+}
+
+
+
+

@@ -36,6 +36,45 @@ namespace GIS_SCM.Controllers
             return View(customer);
         }
 
+
+        public ActionResult customerDC(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            string customermarker = "[";
+
+
+
+            using (var db = new GIS_SCMContext())
+            {
+                var mydclist = db.DistributionCenters;
+                var randomdc = mydclist.OrderBy(x => Guid.NewGuid()).Take(8);
+
+                foreach (var dc in randomdc)
+                {
+
+                    customermarker += "{";
+                    customermarker += string.Format("'title': '{0} {1} {2}',", dc.DCNumber, " - ", dc.DCDesc);
+                    customermarker += string.Format("'lat': '{0}',", dc.Latitude);
+                    customermarker += string.Format("'lng': '{0}'", dc.Longitude);
+                    customermarker += "},";
+
+                }
+
+            }
+
+            customermarker += "];";
+            ViewBag.customermarker = customermarker;
+            return View(customer);
+        }
+
         // GET: Customers/Create
         public ActionResult Create()
         {

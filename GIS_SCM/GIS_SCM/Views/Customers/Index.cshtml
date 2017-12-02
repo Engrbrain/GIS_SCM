@@ -6,11 +6,6 @@
 
 
 
-
-
-
-
-
   <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
     <li><a href="#">Home</a></li>
@@ -53,67 +48,70 @@
                     </div>           
                 </div>
                 <div class="panel-body">
-                    <p>
-                        @Html.ActionLink("Create New", "Create")
+                    <p >
+                        
+                        <a href="@Url.Action("Create", "Customers")" class="btn-danger">Create Customers</a>
                     </p>
-                    <table id="customers2" class="table datatable table-striped table-actions">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Customer No
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                               
-                                <th>
-                                    State
-                                </th>
-                                <th>
-                                    Address
-                                </th>
-                                <th>
-                                    Latitude
-                                </th>
-                                <th>
-                                    Longitude
-                                </th>
-                                <th>Action</th>
-                            </tr>
+                    <div class="table-responsive">
+                        <table id="customers2" class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th width="10%">
+                                        Customer No
+                                    </th>
+                                    <th width="20%">
+                                        Name
+                                    </th>
+
+                                    <th width="10%">
+                                        State
+                                    </th>
+                                    <th width="20%">
+                                        Address
+                                    </th>
+                                    <th width="10%">
+                                        Latitude
+                                    </th>
+                                    <th width="10%">
+                                        Longitude
+                                    </th>
+                                    <th width="20%">Action</th>
+                                </tr>
                             </thead>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerNumber)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerName)
-                                    </td>
-                                   
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerState)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CustomerAddress)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Latitude)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Longitude)
-                                    </td>
-                                    <td>
-                                        <a title="Modify Customer" href="@Url.Action("Edit", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
-                                        <a title="View Customer" href="@Url.Action("Details", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
-                                        <a title="View Customer" href="@Url.Action("Delete", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
-                                        
-                                    </td>
-                                </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerState)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Latitude)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Longitude)
+                            </td>
+                            <td>
+                                <a title="Modify Customer" href="@Url.Action("Edit", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-pencil'></i></a>
+                                <a title="View Customer" href="@Url.Action("Details", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-desktop'></i></a>
+                                <a title="View Customer" href="@Url.Action("Delete", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-times'></i></a>
+                                <a title="Customer To DC Analysis" href="@Url.Action("customerDC", "Customers", new { id = item.ID})" class="btn btn-default btn-rounded btn-condensed btn-sm"><i class='fa fa-map-marker'></i></a>
+                            </td>
+                        </tr>
                             }
 
-</table>
-                </div>
+                        </table>
+                   </div>
+                    </div>
             </div>
         </div>
     </div>

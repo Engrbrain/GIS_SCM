@@ -69,9 +69,9 @@ $(function(){
     Morris.Donut({
         element: 'dashboard-donut-1',
         data: [
-            {label: "Returned", value: 2513},
-            {label: "New", value: 764},
-            {label: "Registred", value: 311}
+            {label: "Distributors", value: 15584},
+            {label: "Suppliers", value: 12164},
+            {label: "Distribution Centers", value: 327}
         ],
         colors: ['#33414E', '#3FBAE4', '#FEA223'],
         resize: true
@@ -82,17 +82,17 @@ $(function(){
     Morris.Bar({
         element: 'dashboard-bar-1',
         data: [
-            { y: 'Oct 10', a: 75, b: 35 },
-            { y: 'Oct 11', a: 64, b: 26 },
+            { y: 'Oct 10', a: 75, b: 75 },
+            { y: 'Oct 11', a: 64, b: 60 },
             { y: 'Oct 12', a: 78, b: 39 },
-            { y: 'Oct 13', a: 82, b: 34 },
-            { y: 'Oct 14', a: 86, b: 39 },
-            { y: 'Oct 15', a: 94, b: 40 },
-            { y: 'Oct 16', a: 96, b: 41 }
+            { y: 'Oct 13', a: 82, b: 16 },
+            { y: 'Oct 14', a: 86, b: 80 },
+            { y: 'Oct 15', a: 94, b: 90 },
+            { y: 'Oct 16', a: 96, b: 96 }
         ],
         xkey: 'y',
         ykeys: ['a', 'b'],
-        labels: ['New Users', 'Returned'],
+        labels: ['Goods Issue', 'Goods Reciept'],
         barColors: ['#33414E', '#3FBAE4'],
         gridTextSize: '10px',
         hideHover: true,
@@ -126,24 +126,8 @@ $(function(){
     /* EMD Line dashboard chart */
     
     /* Vector Map */
-    var jvm_wm = new jvm.WorldMap({container: $('#dashboard-map-seles'),
-                                    map: 'world_mill_en', 
-                                    backgroundColor: '#FFFFFF',                                      
-                                    regionsSelectable: true,
-                                    regionStyle: {selected: {fill: '#B64645'},
-                                                    initial: {fill: '#33414E'}},
-                                    markerStyle: {initial: {fill: '#3FBAE4',
-                                                   stroke: '#3FBAE4'}},
-                                    markers: [{latLng: [50.27, 30.31], name: 'Kyiv - 1'},                                              
-                                              {latLng: [52.52, 13.40], name: 'Berlin - 2'},
-                                              {latLng: [48.85, 2.35], name: 'Paris - 1'},                                            
-                                              {latLng: [51.51, -0.13], name: 'London - 3'},                                                                                                      
-                                              {latLng: [40.71, -74.00], name: 'New York - 5'},
-                                              {latLng: [35.38, 139.69], name: 'Tokyo - 12'},
-                                              {latLng: [37.78, -122.41], name: 'San Francisco - 8'},
-                                              {latLng: [28.61, 77.20], name: 'New Delhi - 4'},
-                                              {latLng: [39.91, 116.39], name: 'Beijing - 3'}]
-                                });    
+
+   
     /* END Vector Map */
 
     
